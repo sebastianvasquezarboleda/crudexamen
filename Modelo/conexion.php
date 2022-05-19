@@ -1,18 +1,26 @@
 <?php
-class Conexion{
-    private static $conexion = NULL;
-    private $host = 'localhost';
-    private $baseDatos = 'crudexamen';
-    private $usuario = 'root';
-    private $contrasena = '';
-   
 
-    private function __construct(){}
+class Conexion{
+    private static $conexion = null;
+
+    public function __construct(){}
 
     public static function conectar(){
-        //Verifica errores
-        $pdo_options[PDO::ATTR_ERRMODE]=PDO::ERRMODE_EXCEPTION;
-        self::$conexion = new PDO('mysql:host=127.0.0.1;dbname=crudexamen','root','',$pdo_options);
+        $host = "Localhost";
+        $dbname = "crudexamen";
+        $user = "root";
+        $password = "";
+
+        $txtConexion = "mysql:host=".$host.";dbname=".$dbname.";charset=utf8";
+
+        try{
+          self::$conexion = new PDO($txtConexion,$user,$password);
+          self::$conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  
+        }
+        catch(Exception $error){
+            self::$conexion = "Conexion Fallida";
+            echo "ERROR: ". $error->getMessage();
+        }
         return self::$conexion;
     }
 
@@ -20,7 +28,5 @@ class Conexion{
         $conexion = null;
     }
 }
-
 $baseDatos = Conexion::conectar();
-
 ?>

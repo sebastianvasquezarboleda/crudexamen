@@ -20,8 +20,8 @@ class crudambiente{
             $sql->execute(); //Ejecutar el sql
             $mensaje ="Registro Exitoso";
         }
-        catch(Excepcion $e){
-            $mensaje = $e->getMessage(); //Obtener el mensaje de error.
+        catch(Excepcion $error){
+            $mensaje = $error->getMessage(); //Obtener el mensaje de error.
         }
         Conexion::desconectar($baseDatos); //Cierra la conexión.
         return $mensaje;

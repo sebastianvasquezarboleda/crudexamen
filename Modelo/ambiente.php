@@ -28,7 +28,7 @@ class ambiente{
         return $this->descripcion;
     }
 
-    public function getnumerocomputadores($numerocomputadores){
+    public function getnumerocomputadores(){
         return $this->numerocomputadores;
     }
 
